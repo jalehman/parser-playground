@@ -52,6 +52,8 @@
 
 ;; Author
 
+(-> (html/select recipe-resource [:div.post-info :a]) first html/text s/trim)
+
 ;; Tags?
 
 ;; Description?
