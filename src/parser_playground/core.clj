@@ -19,9 +19,16 @@
 
 ;; The url of the recipe we're working with
 (def recipe-url "http://www.cravingsomethinghealthy.com/pear-prosciutto-and-arugula-pizza/")
+;; Url with yield
+(def recipe-url-with-yield "http://cravingsomethinghealthy.com/montasio-sweet-onion-tart/")
+;; Url with Description
+(def recipe-url-with-description "http://cravingsomethinghealthy.com/hot-and-sweet-pickled-vegetables/")
+
 
 ;; The Enlive "resource" that we'll work with
 (def recipe-resource (get-resource recipe-url))
+(def recipe-resource-with-yield (get-resource recipe-url-with-yield))
+(def recipe-resource-with-description (get-resource recipe-url-with-description))
 
 ;; Let's get just the title of the recipe
 ;; (html/text (first (html/select recipe-resource [:div#zlrecipe-title])))
@@ -56,9 +63,15 @@
 
 ;; Tags?
 
+
 ;; Description?
+(-> (html/select recipe-resource-with-description [:div.zlrecipe-container-border :p.summary.italic])
+    first html/text s/trim)
 
 ;; Yield?
+
+(-> (html/select recipe-resource-with-yield [:div.zlrecipe-container-border :p#zlrecipe-yield :span])
+    first html/text s/trim)
 
 
 
